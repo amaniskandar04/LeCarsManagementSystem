@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="backgroundlogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxtesting.ControllerLogin">
+   <children>
+      <Circle fill="#215280" layoutX="231.0" layoutY="325.0" radius="273.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="650.0" layoutX="457.0" stroke="#b1b1b1" strokeType="INSIDE" width="443.0" />
+      <Button fx:id="UserLogin" layoutX="690.0" layoutY="457.0" mnemonicParsing="false" onAction="#loginbutton" prefHeight="50.0" prefWidth="135.0" text="Login">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <PasswordField id="loginpasswordbox" fx:id="loginpasswordbox" layoutX="534.0" layoutY="373.0" prefHeight="50.0" prefWidth="290.0" promptText="Password">
+         <font>
+            <Font size="20.0" />
+         </font></PasswordField>
+      <TextField id="loginuserbox" fx:id="loginuserbox" layoutX="534.0" layoutY="293.0" prefHeight="50.0" prefWidth="290.0" promptText="User ID">
+         <font>
+            <Font size="20.0" />
+         </font></TextField>
+
+      <Label fx:id="textsignin" layoutX="457.0" layoutY="205.0" prefHeight="18.0" prefWidth="443.0" text="Sign-In" />
+      <Button fx:id="UserRegister" layoutX="534.0" layoutY="457.0" mnemonicParsing="false" onAction="#registrationbutton" prefHeight="50.0" prefWidth="135.0" text="Register">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Label layoutX="457.0" layoutY="537.0" prefHeight="26.0" prefWidth="443.0" styleClass="logintext" text="Note: If your account already exists, press Login. " textAlignment="CENTER" underline="true" />
+      <Label layoutX="456.0" layoutY="563.0" prefHeight="26.0" prefWidth="443.0" styleClass="logintext" text="Register will make a new account based on" textAlignment="CENTER" underline="true" wrapText="true" />
+      <Label layoutX="456.0" layoutY="585.0" prefHeight="26.0" prefWidth="443.0" styleClass="logintext" text="the username and password typed." textAlignment="CENTER" underline="true" wrapText="true" />
+      <ImageView fitHeight="650.0" fitWidth="458.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../../../Downloads/kemar%20kereta.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="200.0" fitWidth="350.0" layoutX="504.0" layoutY="70.0" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Downloads/Le_Cars_Logo-removebg-preview.png" />
+         </image>
+      </ImageView>
+
+   </children>
+</AnchorPane>

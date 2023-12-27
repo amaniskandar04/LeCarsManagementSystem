@@ -1,0 +1,65 @@
+.root{
+    -fx-background-color: #ADBBCD;
+}
+
+/*Here is for login.fxml*/
+.logintext{
+    -fx-font: italic bold 12px "Monserrat";
+    -fx-alignment:center;
+}
+
+
+
+#textsignin{
+    -fx-alignment:CENTER;
+    -fx-font: 40px "Monserrat";
+    -fx-text-fill: #2B2A4C;
+}
+
+#UserRegister{
+    -fx-background-color: #215280;
+    -fx-text-fill: #FFFFFF;
+}
+
+#UserLogin{
+    -fx-background-color: #215280;
+    -fx-text-fill: #FFFFFF;
+}
+
+/*For Menu Screen*/
+#name1{
+    -fx-alignment:CENTER_LEFT;
+    -fx-font: 15px "Monserrat";
+}
+
+#name2{
+    -fx-alignment:CENTER_LEFT;
+    -fx-font: 15px "Monserrat";
+}
+
+
+#titletextmenu{
+    -fx-font: BOLD 20px "Monserrat";
+    -fx-text-fill: #181e57;
+}
+
+.mainsidebar{
+    -fx-alignment: CENTER_LEFT;
+    -fx-background-color: #1d235f;
+    -fx-text-fill: #ffffff;
+    -fx-font: 14px "Monserrat";
+}
+
+.mainsidebargray{
+    -fx-alignment: CENTER_LEFT;
+    -fx-background-color: #1d235f;
+    -fx-text-fill: #cccaca;
+    -fx-font: bold 12px "Monserrat";
+}
+
+.selectedsidebar{
+    -fx-alignment: CENTER_LEFT;
+    -fx-background-color: #8ACDD7;
+    -fx-text-fill: #000000;
+    -fx-font: 14px "Monserrat";    
+}
