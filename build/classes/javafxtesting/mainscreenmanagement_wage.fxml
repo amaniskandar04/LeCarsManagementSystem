@@ -6,14 +6,12 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxtesting.ControllerManagementMenuCust">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxtesting.ControllerManagementMenuWage">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1d235f" height="650.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="246.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#215280" height="68.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="900.0" />
@@ -27,7 +25,7 @@
             <MenuItem mnemonicParsing="false" text="Save Employee Data" />
         </items>
       </MenuButton>
-      <ImageView fitHeight="68.0" fitWidth="246.0" preserveRatio="true">
+      <ImageView fitHeight="68.0" fitWidth="246.0" layoutY="1.0" preserveRatio="true">
          <image>
             <Image url="@../image_2024-01-06_054411602-removebg-preview.png" />
          </image>
@@ -43,41 +41,21 @@
       <Label alignment="CENTER" layoutX="14.0" layoutY="209.0" prefHeight="18.0" prefWidth="155.0" styleClass="mainsidebargray" stylesheets="@application.css" text="Overview" textFill="#cccaca" />
       <Button fx:id="sidebarfinances" layoutX="-2.0" layoutY="234.0" mnemonicParsing="false" onAction="#financesidebar" prefHeight="30.0" prefWidth="246.0" styleClass="mainsidebar" stylesheets="@application.css" text="     &gt; Finances" />
       <Label alignment="CENTER" layoutX="14.0" layoutY="287.0" prefHeight="18.0" prefWidth="155.0" styleClass="mainsidebargray" stylesheets="@application.css" text="Data Input" textFill="#cccaca" />
-      <Button layoutX="-2.0" layoutY="318.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="246.0" styleClass="selectedsidebar" stylesheets="@application.css" text="     &gt; Customer" />
-      <Button layoutX="-2.0" layoutY="351.0" mnemonicParsing="false" onAction="#vehiclesidebar" prefHeight="26.0" prefWidth="246.0" styleClass="mainsidebar" stylesheets="@application.css" text="     &gt; Vehicle" />
+      <Button layoutX="-2.0" layoutY="318.0" mnemonicParsing="false" onAction="#custsidebar" prefHeight="26.0" prefWidth="246.0" styleClass="mainsidebar" stylesheets="@application.css" text="     &gt; Customer" />
+      <Button layoutX="-2.0" layoutY="351.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="246.0" styleClass="mainsidebar" stylesheets="@application.css" text="     &gt; Vehicle" />
       <Button layoutX="-2.0" layoutY="384.0" mnemonicParsing="false" onAction="#salessidebar" prefHeight="26.0" prefWidth="246.0" styleClass="mainsidebar" stylesheets="@application.css" text="     &gt; Sales" />
       <Label alignment="CENTER" layoutX="14.0" layoutY="471.0" prefHeight="18.0" prefWidth="155.0" styleClass="mainsidebargray" stylesheets="@application.css" text="Human Resources" textFill="#cccaca" />
-      <Button layoutX="-2.0" layoutY="499.0" mnemonicParsing="false" onAction="#wagesidebar" prefHeight="26.0" prefWidth="246.0" styleClass="mainsidebar" stylesheets="@application.css" text="     &gt; Employee Wages" />
+      <Button layoutX="-2.0" layoutY="499.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="246.0" styleClass="selectedsidebar" stylesheets="@application.css" text="     &gt; Employee Wages" />
       <Label id="name2" fx:id="name2" layoutX="579.0" layoutY="26.0" prefHeight="18.0" prefWidth="298.0" text="Name of Person" textFill="WHITE" />
       <Button layoutX="-2.0" layoutY="417.0" mnemonicParsing="false" onAction="#employeesidebar" prefHeight="26.0" prefWidth="246.0" styleClass="mainsidebar" stylesheets="@application.css" text="     &gt; Employee" />
-      <TableView fx:id="tableViewCust" layoutX="266.0" layoutY="90.0" prefHeight="412.0" prefWidth="598.0">
+      <TableView fx:id="tableViewWage" layoutX="266.0" layoutY="90.0" prefHeight="518.0" prefWidth="598.0">
         <columns>
-          <TableColumn fx:id="custId" prefWidth="75.0" text="custId" />
-          <TableColumn fx:id="custName" prefWidth="314.39996337890625" text="custName" />
-            <TableColumn fx:id="phoneNum" prefWidth="112.79998779296875" text="phoneNum" />
-            <TableColumn fx:id="postcode" prefWidth="80.800048828125" text="postcode" />
+          <TableColumn fx:id="employeeId" prefWidth="90.4000244140625" text="employeeId" />
+          <TableColumn fx:id="basicAllowance" prefWidth="144.0" text="Base Salary (Jun-Oct)" />
+            <TableColumn fx:id="commission" prefWidth="87.20001220703125" text="Commission" />
+            <TableColumn fx:id="bonus" prefWidth="145.59991455078125" text="Sales Employee Bonus" />
+            <TableColumn fx:id="totalPayout" prefWidth="128.0" text="Total 2023 Payout" />
         </columns>
       </TableView>
-      <TextField fx:id="custNameTextBox" layoutX="266.0" layoutY="520.0" prefHeight="44.0" prefWidth="475.0" promptText="Customer Name">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="postcodeTextBox" layoutX="266.0" layoutY="576.0" prefHeight="44.0" prefWidth="170.0" promptText="Postcode">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="phoneNumTextBox" layoutX="454.0" layoutY="576.0" prefHeight="44.0" prefWidth="287.0" promptText="Phone Number">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </TextField>
-      <Button layoutX="752.0" layoutY="520.0" mnemonicParsing="false" onAction="#entercustbutton" prefHeight="100.0" prefWidth="111.0" text="Enter">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <Label fx:id="warning" layoutX="266.0" layoutY="627.0" prefHeight="18.0" prefWidth="598.0" />
    </children>
 </AnchorPane>

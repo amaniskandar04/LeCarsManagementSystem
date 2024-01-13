@@ -27,7 +27,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 
-public class ControllerManagementMenuCust {
+public class ControllerSalesMenuCust {
     
     @FXML
     Label name1;
@@ -96,150 +96,71 @@ public class ControllerManagementMenuCust {
         name2.setText(name);
         id1.setText(userid);
         warning.setText(warningMessage);
-    }
-    
-    @FXML
-    private void initialize() {
+        
+        line = "";
+        int lineCounter = 0;
+        
+        BufferedReader reader_sales = new BufferedReader(new FileReader("src\\sales.csv"));
+        
+        while((line = reader_sales.readLine()) != null){
+          String[] split_poggers = line.split(",");
+          if(split_poggers[4].equals(userid)){
+              lineCounter++;
+          }
+            
+        }
+        
+        reader_sales = new BufferedReader(new FileReader("src\\sales.csv"));
+        
+        i = 0;
+        String[] record_sales = new String[lineCounter];
+        line = "";
+        
+        while((line = reader_sales.readLine()) != null){
+          String[] split_epic = line.split(",");
+          if(split_epic[4].equals(userid)){
+             record_sales[i] = split_epic[3];
+             i++; 
+          }
+        }
+        
+        reader_sales.close();
         
         custId.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[0]));
         custName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[1]));
         phoneNum.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[2]));
         postcode.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[3]));
         
-
+        
         String csvFilePath = "src/cust.csv";
-        try (BufferedReader reader = new BufferedReader(new FileReader(csvFilePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
+        try (BufferedReader reader2 = new BufferedReader(new FileReader(csvFilePath))) {
+            line = "";
+            while ((line = reader2.readLine()) != null) {
                 String[] data = line.split(",");
-                if (!data[0].equals("custId")){
-                    tableViewCust.getItems().add(data);
+                for(int k = 0; k < record_sales.length; k++){
+                    if (!data[0].equals("custId") && data[0].equals(record_sales[k])){
+                        tableViewCust.getItems().add(data);
+                        break;
+                    }
                 }
+                
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     
-    @FXML
-    private void SalesImportButton(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select Data File");
-        File file = fileChooser.showOpenDialog(new Stage());
-
-        if (file != null) {
-            String destinationPath = "src"; // Specify the desired directory within src
-            String destinationFileName = "sales.csv"; // Specify the desired file name
-
-            File destinationDirectory = new File(destinationPath);
-            
-        if (!destinationDirectory.exists()) {
-            destinationDirectory.mkdirs();
-        }
-        
-        File destinationFile = new File(destinationPath, destinationFileName);
-
-        try {
-            String[] employeeData = DataImporter.importData(file);
-            DataExporter.exportData(employeeData, destinationFile);    
-        } catch (IOException e) {
-            e.printStackTrace(); 
-        }
-        }
-    }
-    
-    @FXML
-    private void CustomerImportButton(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select Data File");
-        File file = fileChooser.showOpenDialog(new Stage());
-
-        if (file != null) {
-            String destinationPath = "src"; // Specify the desired directory within src
-            String destinationFileName = "cust.csv"; // Specify the desired file name
-
-            File destinationDirectory = new File(destinationPath);
-            
-        if (!destinationDirectory.exists()) {
-            destinationDirectory.mkdirs();
-        }
-        
-        File destinationFile = new File(destinationPath, destinationFileName);
-
-        try {
-            String[] employeeData = DataImporter.importData(file);
-            DataExporter.exportData(employeeData, destinationFile);    
-        } catch (IOException e) {
-            e.printStackTrace(); 
-        }
-        }
-    }
-
-    @FXML
-    private void VehicleImportButton(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select Data File");
-        File file = fileChooser.showOpenDialog(new Stage());
-
-        if (file != null) {
-            String destinationPath = "src"; // Specify the desired directory within src
-            String destinationFileName = "vehicle.csv"; // Specify the desired file name
-
-            File destinationDirectory = new File(destinationPath);
-            
-        if (!destinationDirectory.exists()) {
-            destinationDirectory.mkdirs();
-        }
-        
-        File destinationFile = new File(destinationPath, destinationFileName);
-
-        try {
-            String[] employeeData = DataImporter.importData(file);
-            DataExporter.exportData(employeeData, destinationFile);    
-        } catch (IOException e) {
-            e.printStackTrace(); 
-        }
-        }
-    }
-
-    @FXML
-    private void financesidebar(ActionEvent event) throws IOException {
-        
-        String userid = id1.getText();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("mainscreenmanagement.fxml"));
-              
-        
-        root = loader.load();
-        ControllerManagementMenu menu1 = loader.getController();
-        menu1.menuname(userid);
-
-
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-
-        String css = this.getClass().getResource("application.css").toExternalForm();
-        scene.getStylesheets().add(css); //if got other scene just use this template
-
-        Image icon = new Image("LogoOnly.png");
-        stage.getIcons().add(icon);
-        stage.setTitle("LeCars Management System");
-
-        stage.setScene(scene);
-        stage.show();        
-
-    }
     
     @FXML
     private void vehiclesidebar(ActionEvent event) throws IOException {
         
         String userid = id1.getText();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("mainscreenmanagement_vehicle.fxml"));
-              
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("mainscreensales_vehicle.fxml"));
+        String warningMessage = "";      
         
         root = loader.load();
-        ControllerManagementMenuVehicle menu1 = loader.getController();
-        String warningMessage;
-        warningMessage = "";
+        ControllerSalesMenuVehicle menu1 = loader.getController();
         menu1.menuname(userid, warningMessage);
 
 
@@ -262,11 +183,11 @@ public class ControllerManagementMenuCust {
     private void salessidebar(ActionEvent event) throws IOException {
         
         String userid = id1.getText();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("mainscreenmanagement_sales.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("mainscreensales_sales.fxml"));
         String warningMessage = "";      
         
         root = loader.load();
-        ControllerManagementMenuSales menu1 = loader.getController();
+        ControllerSalesMenuSales menu1 = loader.getController();
         menu1.menuname(userid, warningMessage);
 
 
@@ -285,32 +206,7 @@ public class ControllerManagementMenuCust {
 
     }
     
-    @FXML
-    private void employeesidebar(ActionEvent event) throws IOException {
-        
-        String userid = id1.getText();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("mainscreenmanagement_employee.fxml"));
-        String warningMessage = "";      
-        
-        root = loader.load();
-        ControllerManagementMenuEmployee menu1 = loader.getController();
-        menu1.menuname(userid, warningMessage);
-
-
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-
-        String css = this.getClass().getResource("application.css").toExternalForm();
-        scene.getStylesheets().add(css); //if got other scene just use this template
-
-        Image icon = new Image("LogoOnly.png");
-        stage.getIcons().add(icon);
-        stage.setTitle("LeCars Management System");
-
-        stage.setScene(scene);
-        stage.show();        
-
-    }
+    
     
     @FXML
     private void entercustbutton(ActionEvent event) throws IOException {
@@ -331,11 +227,11 @@ public class ControllerManagementMenuCust {
             String[] checker = line.split(",");
             if (checker[1].equals(custName) && checker[3].equals(postcode) && checker[2].equals(phoneNum)){
                 String userid = id1.getText();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("mainscreenmanagement_cust.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("mainscreensales_cust.fxml"));
                 String warningMessage = "Customer already exists!";      
 
                 root = loader.load();
-                ControllerManagementMenuCust menu1 = loader.getController();
+                ControllerSalesMenuCust menu1 = loader.getController();
                 menu1.menuname(userid, warningMessage);
 
 
@@ -350,7 +246,7 @@ public class ControllerManagementMenuCust {
                 stage.setTitle("LeCars Management System");
 
                 stage.setScene(scene);
-                stage.show();        
+                stage.show();
             }
         }
         
@@ -383,11 +279,12 @@ public class ControllerManagementMenuCust {
         writer.close();
         
         String userid = id1.getText();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("mainscreenmanagement_cust.fxml"));
-        String warningMessage = "Customer recorded!";      
+        String warningMessage = "";
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("mainscreensales_cust.fxml"));
+              
         
         root = loader.load();
-        ControllerManagementMenuCust menu1 = loader.getController();
+        ControllerSalesMenuCust menu1 = loader.getController();
         menu1.menuname(userid, warningMessage);
 
 
@@ -403,32 +300,7 @@ public class ControllerManagementMenuCust {
 
         stage.setScene(scene);
         stage.show();
-    }
-    
-    @FXML
-    private void wagesidebar(ActionEvent event) throws IOException {
-        
-        String userid = id1.getText();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("mainscreenmanagement_wage.fxml"));
-              
-        
-        root = loader.load();
-        ControllerManagementMenuWage menu1 = loader.getController();
-        menu1.menuname(userid);
 
-
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-
-        String css = this.getClass().getResource("application.css").toExternalForm();
-        scene.getStylesheets().add(css); //if got other scene just use this template
-
-        Image icon = new Image("LogoOnly.png");
-        stage.getIcons().add(icon);
-        stage.setTitle("LeCars Management System");
-
-        stage.setScene(scene);
-        stage.show();
     }
 
 

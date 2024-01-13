@@ -17,9 +17,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 
 public class JavaFXTesting extends Application{
 
+
+    private Parent root;
     
     public static void main (String[] args){
         launch(args);
@@ -27,27 +30,28 @@ public class JavaFXTesting extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        try{
-        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));       
-        Scene scene1 = new Scene(root);
-        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+        String warningMessage = "";
+
+
+        root = loader.load();
+
+        ControllerLogin menu1 = loader.getController();
+        menu1.menuname(warningMessage);
+
+
+        //root = FXMLLoader.load(getClass().getResource("mainscreenmanagement.fxml"));
+        Scene scene = new Scene(root);
+
         String css = this.getClass().getResource("application.css").toExternalForm();
-        scene1.getStylesheets().add(css); //if got other scene just use this template
-        
-        Image icon = new Image("LogoOnly.png");       
+        scene.getStylesheets().add(css); //if got other scene just use this template
+
+        Image icon = new Image("LogoOnly.png");
         primaryStage.getIcons().add(icon);
         primaryStage.setTitle("LeCars Management System");
-        
-        
-        primaryStage.setScene(scene1);
-        primaryStage.show();
-        }
-        
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        
-    }
+
+        primaryStage.setScene(scene);
+        primaryStage.show();}
 
 
     
